@@ -636,12 +636,6 @@
     .showcase-row.reverse {
       grid-template-columns: 1.4fr 1fr;
     }
-    .showcase-row.reverse .showcase-text {
-      order: 2;
-    }
-    .showcase-row.reverse .showcase-visual {
-      order: 1;
-    }
     .showcase-eyebrow {
       display: inline-block;
       font-family: var(--font-mono);
@@ -722,8 +716,11 @@
         grid-template-columns: 1fr;
         gap: 2rem;
       }
-      .showcase-row.reverse .showcase-text { order: 1; }
-      .showcase-row.reverse .showcase-visual { order: 2; }
+      /* For reversed rows on mobile: flip display order so text appears before image */
+      .showcase-row.reverse {
+        display: flex;
+        flex-direction: column-reverse;
+      }
     }
 
     .cta-section {
