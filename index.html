@@ -620,6 +620,112 @@
     }
 
     /* ---------- FINAL CTA ---------- */
+    /* ---------- PRODUCT SHOWCASE ---------- */
+    .showcase {
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(5rem, 10vw, 8rem);
+    }
+    .showcase-row {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .showcase-row.reverse {
+      grid-template-columns: 1.4fr 1fr;
+    }
+    .showcase-row.reverse .showcase-text {
+      order: 2;
+    }
+    .showcase-row.reverse .showcase-visual {
+      order: 1;
+    }
+    .showcase-eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--fs-tiny);
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      padding: 0.4rem 0.85rem;
+      background: var(--accent-glow);
+      border-radius: 100px;
+    }
+    .showcase-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+      color: var(--text-1);
+    }
+    .showcase-title em {
+      font-style: italic;
+      color: var(--text-2);
+    }
+    .showcase-desc {
+      font-size: var(--fs-body);
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 38ch;
+    }
+    .showcase-visual {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow:
+        0 25px 80px -25px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+    }
+    .showcase-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 14px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+    .showcase-visual:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 35px 100px -25px rgba(0, 0, 0, 0.9),
+        0 0 0 1px var(--accent-glow);
+    }
+    .showcase-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* Subtle accent glow behind the visual */
+    .showcase-visual-wrap {
+      position: relative;
+    }
+    .showcase-visual-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 60%);
+      opacity: 0.5;
+      filter: blur(40px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    @media (max-width: 880px) {
+      .showcase-row,
+      .showcase-row.reverse {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .showcase-row.reverse .showcase-text { order: 1; }
+      .showcase-row.reverse .showcase-visual { order: 2; }
+    }
+
     .cta-section {
       text-align: center;
       padding: var(--space-section) 0;
@@ -930,6 +1036,81 @@
       <p class="section-lead reveal reveal-delay-2">
         Pas dix outils éclatés. Un seul espace où l'IA fait disparaître le travail invisible, pour qu'il ne reste que ce qui compte : la rencontre.
       </p>
+
+      <!-- ===== Visual showcase ===== -->
+      <div class="showcase">
+
+        <div class="showcase-row reveal">
+          <div class="showcase-text">
+            <span class="showcase-eyebrow">L'accueil</span>
+            <h3 class="showcase-title">Votre journée,<br/><em>en un coup d'œil.</em></h3>
+            <p class="showcase-desc">Stats du mois, agenda, to-do, fil d'équipe. Vous ouvrez Nexum, vous savez exactement où vous en êtes. Pas trois onglets à parcourir, pas de tableau Excel à rafraîchir.</p>
+          </div>
+          <div class="showcase-visual-wrap">
+            <div class="showcase-visual">
+              <img src="screenshots/home.png" alt="Tableau de bord Nexum — accueil avec stats, agenda et to-do" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-row reverse reveal">
+          <div class="showcase-visual-wrap">
+            <div class="showcase-visual">
+              <img src="screenshots/pipeline.png" alt="Pipeline commercial Nexum — vue kanban des deals" loading="lazy" />
+            </div>
+          </div>
+          <div class="showcase-text">
+            <span class="showcase-eyebrow">Pipeline &amp; analytics</span>
+            <h3 class="showcase-title">Le pipeline qui<br/><em>se met à jour seul.</em></h3>
+            <p class="showcase-desc">Pipeline pondéré, win rate, deals qui s'endorment, top opportunités. L'IA suit, calcule, alerte. Vous, vous restez concentré sur les clients qui valent le coup.</p>
+          </div>
+        </div>
+
+        <div class="showcase-row reveal">
+          <div class="showcase-text">
+            <span class="showcase-eyebrow">CRM intelligent</span>
+            <h3 class="showcase-title">Le CRM<br/><em>qu'on utilise le moins.</em></h3>
+            <p class="showcase-desc">Les fiches se remplissent toutes seules. L'historique se construit en arrière-plan. Vous ne cliquez plus dans des cases — Nexum le fait à votre place pendant que vous appelez vos prospects.</p>
+          </div>
+          <div class="showcase-visual-wrap">
+            <div class="showcase-visual">
+              <img src="screenshots/crm.png" alt="CRM Nexum — fiches prospects avec qualification automatique" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-row reverse reveal">
+          <div class="showcase-visual-wrap">
+            <div class="showcase-visual">
+              <img src="screenshots/outreach.png" alt="Séquences outreach Nexum — campagnes email, LinkedIn, SMS" loading="lazy" />
+            </div>
+          </div>
+          <div class="showcase-text">
+            <span class="showcase-eyebrow">Outreach IA</span>
+            <h3 class="showcase-title">Des séquences<br/><em>qui ressemblent à vous.</em></h3>
+            <p class="showcase-desc">Email, LinkedIn, SMS — Nexum rédige à votre voix, au bon moment, avec le bon angle. Vous validez, vous envoyez. Plus jamais de page blanche le lundi matin.</p>
+          </div>
+        </div>
+
+        <div class="showcase-row reveal">
+          <div class="showcase-text">
+            <span class="showcase-eyebrow">Cartographie</span>
+            <h3 class="showcase-title">Votre marché,<br/><em>vu d'en haut.</em></h3>
+            <p class="showcase-desc">Tous vos prospects et clients positionnés selon leur statut, mis à jour automatiquement. En 3 secondes, vous savez où concentrer vos prochaines tournées.</p>
+          </div>
+          <div class="showcase-visual-wrap">
+            <div class="showcase-visual">
+              <img src="screenshots/map.png" alt="Cartographie temps réel des prospects Nexum" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin: clamp(5rem, 9vw, 7rem) 0 4rem; opacity: 0.6;">
+        <div style="display:inline-block; width: 40px; height: 1px; background: var(--border); margin-bottom: 1.25rem;"></div>
+        <div style="font-family: var(--font-mono); font-size: var(--fs-tiny); letter-spacing: 0.2em; color: var(--text-3); text-transform: uppercase;">Et aussi</div>
+      </div>
 
       <div class="features">
         <div class="feature reveal">
